@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read version
+        id: version
+        shell: pwsh
+        run: |
+          $manifest = Get-Content manifest.json -Raw | ConvertFrom-Json
+          "value=$($manifest.version)" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Build Firefox package (.xpi)
+        shell: pwsh
+        run: |
+          ./build-xpi.ps1 -OutputDir ".\dist"
+
+      - name: Build Chrome/Opera package (.zip)
+        shell: pwsh
+        run: |
+          ./build-chrome.ps1 -OutputDir ".\dist"
+
+      - name: Publish latest prerelease
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: aniskipper-latest
+          target_commitish: ${{ github.sha }}
+          name: AniSkipper Latest
+          prerelease: true
+          make_latest: false
+          overwrite_files: true
+          files: |
+            dist/AniSkipper-${{ steps.version.outputs.value }}.xpi
+            dist/AniSkipper-chrome-${{ steps.version.outputs.value }}.zip
+
+      - name: Publish versioned release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: AniSkipper ${{ github.ref_name }}
+          prerelease: false
+          overwrite_files: true
+          files: |
+            dist/AniSkipper-${{ steps.version.outputs.value }}.xpi
+            dist/AniSkipper-chrome-${{ steps.version.outputs.value }}.zip

@@ -1,0 +1,19 @@
+# Build artifacts
+dist/
+*.xpi
+*.zip
+
+# Logs / temp files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
