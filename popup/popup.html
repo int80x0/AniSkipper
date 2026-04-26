@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AniSkipper</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1 class="title">AniSkipper</h1>
+      <p class="subtitle">Anime opening skipper</p>
+      <p id="status" class="status">Lade Status...</p>
+
+      <section class="section">
+        <h2 class="section-title">Skip</h2>
+        <label class="field">
+          <span class="label">Skip-Dauer (Sekunden)</span>
+          <input id="skipSeconds" type="number" min="5" max="600" step="5" />
+        </label>
+        <label class="field">
+          <span class="label">Button-Position im Player</span>
+          <select id="overlaySide">
+            <option value="left">Links</option>
+            <option value="right">Rechts</option>
+          </select>
+        </label>
+        <button id="skipNow" class="primary" type="button">Jetzt skippen</button>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Hotkey</h2>
+        <div class="row">
+          <input id="hotkeyDisplay" type="text" readonly />
+          <button id="captureHotkey" class="secondary" type="button">Ändern</button>
+          <button id="resetHotkey" class="secondary" type="button">Reset</button>
+        </div>
+        <p class="hint">Gilt im Tab (z. B. Alt+Shift+S).</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Erlaubte Seiten</h2>
+        <div class="row">
+          <input id="siteInput" type="text" placeholder="https://example.com oder example.com" />
+          <button id="addSiteManual" class="secondary" type="button">Hinzufügen</button>
+        </div>
+        <button id="addCurrentSite" class="secondary wide" type="button">Aktuelle Seite hinzufügen</button>
+        <ul id="siteList" class="site-list"></ul>
+        <p class="hint">https://xyz.de erlaubt auch https://xyz.de/blabla.</p>
+      </section>
+
+      <p class="credit">made with ♥️ by 80x0</p>
+    </main>
+
+    <script src="./popup.js"></script>
+  </body>
+</html>
