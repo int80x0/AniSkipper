@@ -2,6 +2,9 @@
 
 Leichtes Browser-Addon zum schnellen Überspringen von Anime-Openings.
 
+## Showcase
+![AniSkipper Popup Showcase](assets/showcase-popup.png)
+
 ## Features
 - Skip-Button direkt im Player
 - Frei einstellbare Skip-Dauer
