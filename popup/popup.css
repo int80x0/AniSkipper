@@ -265,6 +265,72 @@ select {
   border-top: 1px solid var(--border);
   font-size: 11px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
   color: var(--muted-foreground);
   letter-spacing: 0.01em;
+}
+
+.credit-link {
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+  transition: filter 160ms ease;
+}
+
+.credit-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.9;
+  transform: scaleX(0.25);
+  transform-origin: left center;
+  transition: transform 160ms ease;
+}
+
+.credit-link:hover::after,
+.credit-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.credit-link:hover,
+.credit-link:focus-visible {
+  filter: brightness(1.1);
+}
+
+.credit-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 28%, transparent);
+  border-radius: 4px;
+}
+
+.credit-link-animated {
+  background: linear-gradient(90deg, #74c0fc, #ffd166, #ffb347, #74c0fc);
+  background-size: 220% 100%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: credit-name-shimmer 3.6s linear infinite;
+}
+
+@keyframes credit-name-shimmer {
+  to {
+    background-position: 220% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .credit-link-animated {
+    animation: none;
+    background: none;
+    color: #74c0fc;
+  }
 }

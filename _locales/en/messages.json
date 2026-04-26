@@ -65,8 +65,11 @@
   "siteHintPathInheritance": {
     "message": "https://xyz.com also allows https://xyz.com/anything."
   },
-  "creditText": {
-    "message": "made with ♥ by 80x0"
+  "creditPrefix": {
+    "message": "made with ♥ by"
+  },
+  "creditAuthorName": {
+    "message": "80x0"
   },
   "sitesEmpty": {
     "message": "No page enabled yet."

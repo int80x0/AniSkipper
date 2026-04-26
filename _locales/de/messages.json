@@ -65,8 +65,11 @@
   "siteHintPathInheritance": {
     "message": "https://xyz.de erlaubt auch https://xyz.de/blabla."
   },
-  "creditText": {
-    "message": "made with ♥ by 80x0"
+  "creditPrefix": {
+    "message": "mit ♥ von"
+  },
+  "creditAuthorName": {
+    "message": "80x0"
   },
   "sitesEmpty": {
     "message": "Noch keine Seite freigeschaltet."
