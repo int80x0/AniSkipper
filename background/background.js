@@ -12,6 +12,12 @@
   const MIN_SKIP_SECONDS = 5;
   const MAX_SKIP_SECONDS = 600;
 
+  function t(key, substitutions) {
+    const message =
+      typeof api.i18n?.getMessage === "function" ? api.i18n.getMessage(key, substitutions) : "";
+    return message || key;
+  }
+
   function clampSkipSeconds(value) {
     const parsed = Number(value);
     if (!Number.isFinite(parsed)) {
@@ -170,9 +176,9 @@
 
   async function getActiveTab() {
     const activeTabs = await tabsQuery({ active: true, currentWindow: true });
-    if (!activeTabs || activeTabs.length === 0 || typeof activeTabs[0].id !== "number") {
-      return null;
-    }
+      if (!activeTabs || activeTabs.length === 0 || typeof activeTabs[0].id !== "number") {
+        return null;
+      }
     return activeTabs[0];
   }
 
@@ -181,7 +187,7 @@
     if (!activeTab) {
       return {
         ok: false,
-        error: "Kein aktiver Tab gefunden"
+        error: t("errorNoActiveTab")
       };
     }
 
@@ -228,7 +234,7 @@
         responses.push({
           ok: false,
           frameId,
-          error: error instanceof Error ? error.message : "Frame-Kommunikation fehlgeschlagen"
+          error: error instanceof Error ? error.message : t("errorFrameCommunicationFailed")
         });
       }
     }
@@ -255,7 +261,7 @@
     if (successful.length === 0) {
       return {
         ok: false,
-        error: "Seite unterstützt keine Content-Skripte"
+        error: t("errorNoContentScripts")
       };
     }
 
@@ -275,7 +281,7 @@
     if (!state.allowed) {
       return {
         ok: false,
-        error: "Seite nicht erlaubt. Füge die Seite zuerst in AniSkipper hinzu."
+        error: t("errorPageNotAllowedAddFirst")
       };
     }
 
@@ -285,7 +291,7 @@
       seconds
     });
 
-    let lastError = "Kein passender Video-Player gefunden";
+    let lastError = t("errorNoMatchingPlayer");
     for (const entry of responses) {
       if (!entry.ok) {
         continue;

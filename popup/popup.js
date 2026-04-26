@@ -33,6 +33,49 @@
   let isCapturingHotkey = false;
   let currentHotkey = parseHotkey(DEFAULT_HOTKEY);
 
+  function detectLanguage() {
+    const uiLanguage =
+      (typeof api.i18n?.getUILanguage === "function" && api.i18n.getUILanguage()) ||
+      globalThis.navigator?.language ||
+      "en";
+    const normalized = String(uiLanguage).toLowerCase();
+    return normalized.startsWith("de") ? "de" : "en";
+  }
+
+  function t(key, substitutions) {
+    const message =
+      typeof api.i18n?.getMessage === "function" ? api.i18n.getMessage(key, substitutions) : "";
+    return message || key;
+  }
+
+  function localizeStaticText() {
+    document.documentElement.lang = detectLanguage();
+
+    for (const element of document.querySelectorAll("[data-i18n]")) {
+      const key = element.getAttribute("data-i18n");
+      if (!key) {
+        continue;
+      }
+      element.textContent = t(key);
+    }
+
+    for (const element of document.querySelectorAll("[data-i18n-placeholder]")) {
+      const key = element.getAttribute("data-i18n-placeholder");
+      if (!key) {
+        continue;
+      }
+      element.setAttribute("placeholder", t(key));
+    }
+
+    for (const element of document.querySelectorAll("[data-i18n-alt]")) {
+      const key = element.getAttribute("data-i18n-alt");
+      if (!key) {
+        continue;
+      }
+      element.setAttribute("alt", t(key));
+    }
+  }
+
   function normalizeOverlaySide(value) {
     if (value === "right") {
       return "right";
@@ -244,13 +287,17 @@
     hotkeyDisplayEl.value = formatHotkeyForUi(currentHotkey);
   }
 
+  function updateCaptureButtonLabel() {
+    captureHotkeyEl.textContent = isCapturingHotkey ? t("buttonCapturePressKeys") : t("buttonChange");
+  }
+
   function renderAllowedSites() {
     siteListEl.innerHTML = "";
 
     if (allowedSites.length === 0) {
       const empty = document.createElement("li");
       empty.className = "site-item";
-      empty.textContent = "Noch keine Seite freigeschaltet.";
+      empty.textContent = t("sitesEmpty");
       siteListEl.appendChild(empty);
       return;
     }
@@ -265,8 +312,8 @@
       const removeButton = document.createElement("button");
       removeButton.type = "button";
       removeButton.className = "remove-site";
-      removeButton.textContent = "x";
-      removeButton.title = "Seite entfernen";
+      removeButton.textContent = "×";
+      removeButton.title = t("buttonRemoveSite");
       removeButton.addEventListener("click", async () => {
         allowedSites = allowedSites.filter((entry) => entry !== siteRule);
         renderAllowedSites();
@@ -327,14 +374,14 @@
       if (!response || response.ok !== true) {
         return {
           ok: false,
-          error: response?.error || "Kein aktiver Tab gefunden"
+          error: response?.error || t("statusNoActiveTab")
         };
       }
       return response;
     } catch (_error) {
       return {
         ok: false,
-        error: "Aktive Seite konnte nicht gelesen werden"
+        error: t("statusActivePageReadError")
       };
     }
   }
@@ -358,7 +405,7 @@
     const tabStatus = await getActiveTabStatus();
     if (!tabStatus.ok) {
       activeTab = null;
-      setStatus(tabStatus.error || "Kein aktiver Tab gefunden", "error");
+      setStatus(tabStatus.error || t("statusNoActiveTab"), "error");
       return;
     }
 
@@ -368,27 +415,27 @@
     };
 
     if (!tabStatus.allowed) {
-      setStatus("Seite nicht freigeschaltet", "neutral");
+      setStatus(t("statusPageNotEnabled"), "neutral");
       return;
     }
 
     try {
       const ping = await runtimeSendMessage({ type: "ANISKIPPER_PING_ACTIVE_TAB" });
       if (!ping?.ok) {
-        setStatus(ping?.error || "Status konnte nicht gelesen werden", "error");
+        setStatus(ping?.error || t("statusReadFailed"), "error");
         return;
       }
       if (!ping.allowed) {
-        setStatus("Seite nicht freigeschaltet", "neutral");
+        setStatus(t("statusPageNotEnabled"), "neutral");
         return;
       }
       if (ping.hasVideo) {
-        setStatus("Player erkannt", "ok");
+        setStatus(t("statusPlayerDetected"), "ok");
       } else {
-        setStatus("Kein Video-Player auf dieser Seite", "neutral");
+        setStatus(t("statusNoPlayerDetected"), "neutral");
       }
     } catch (_error) {
-      setStatus("Status konnte nicht gelesen werden", "error");
+      setStatus(t("statusReadFailed"), "error");
     }
   }
 
@@ -414,12 +461,12 @@
         seconds: nextSkipSeconds
       });
       if (response?.ok) {
-        setStatus(`Gesprungen: +${nextSkipSeconds}s`, "ok");
+        setStatus(t("statusJumped", String(nextSkipSeconds)), "ok");
       } else {
-        setStatus(response?.error || "Skip fehlgeschlagen", "error");
+        setStatus(response?.error || t("statusSkipFailed"), "error");
       }
     } catch (_error) {
-      setStatus("Skip fehlgeschlagen", "error");
+      setStatus(t("statusSkipFailed"), "error");
     } finally {
       skipNowEl.disabled = false;
       setTimeout(() => {
@@ -433,19 +480,19 @@
       return;
     }
     if (allowedSites.includes(siteRule)) {
-      setStatus("Seite ist bereits freigeschaltet", "neutral");
+      setStatus(t("statusSiteAlreadyEnabled"), "neutral");
       return;
     }
     allowedSites = dedupeSiteRules([...allowedSites, siteRule]);
     renderAllowedSites();
     await persistSettings();
-    setStatus("Seite freigeschaltet", "ok");
+    setStatus(t("statusSiteEnabled"), "ok");
   }
 
   async function handleAddManualSite() {
     const normalized = canonicalizeSiteRule(siteInputEl.value);
     if (!normalized) {
-      setStatus("Ungültige URL", "error");
+      setStatus(t("statusInvalidUrl"), "error");
       return;
     }
     siteInputEl.value = "";
@@ -455,13 +502,13 @@
   async function handleAddCurrentSite() {
     const tabStatus = await getActiveTabStatus();
     if (!tabStatus.ok || !tabStatus.url) {
-      setStatus("Aktuelle Seite konnte nicht gelesen werden", "error");
+      setStatus(t("statusCurrentPageReadError"), "error");
       return;
     }
 
     const normalized = canonicalizeSiteRule(tabStatus.url, true);
     if (!normalized) {
-      setStatus("Diese Seite kann nicht freigeschaltet werden", "error");
+      setStatus(t("statusCannotEnablePage"), "error");
       return;
     }
     await addSiteRule(normalized);
@@ -469,19 +516,19 @@
 
   function stopHotkeyCapture() {
     isCapturingHotkey = false;
-    captureHotkeyEl.textContent = "Ändern";
+    updateCaptureButtonLabel();
   }
 
   function startHotkeyCapture() {
     isCapturingHotkey = true;
-    captureHotkeyEl.textContent = "Drücke Tasten...";
-    setStatus("Jetzt neue Tastenkombination drücken", "neutral");
+    updateCaptureButtonLabel();
+    setStatus(t("statusPressNewShortcut"), "neutral");
   }
 
   async function handleCaptureHotkeyClick() {
     if (isCapturingHotkey) {
       stopHotkeyCapture();
-      setStatus("Hotkey-Aufnahme abgebrochen", "neutral");
+      setStatus(t("statusHotkeyCaptureCanceled"), "neutral");
       return;
     }
     startHotkeyCapture();
@@ -491,7 +538,7 @@
     currentHotkey = parseHotkey(DEFAULT_HOTKEY);
     renderHotkey();
     await persistSettings();
-    setStatus("Hotkey auf Standard gesetzt", "ok");
+    setStatus(t("statusHotkeyReset"), "ok");
   }
 
   async function handleWindowKeyDown(event) {
@@ -504,13 +551,13 @@
 
     if (event.key === "Escape") {
       stopHotkeyCapture();
-      setStatus("Hotkey-Aufnahme abgebrochen", "neutral");
+      setStatus(t("statusHotkeyCaptureCanceled"), "neutral");
       return;
     }
 
     const nextHotkey = buildHotkeyFromEvent(event);
     if (!nextHotkey) {
-      setStatus("Bitte mit mindestens einer Modifier-Taste", "error");
+      setStatus(t("statusHotkeyNeedModifier"), "error");
       return;
     }
 
@@ -518,10 +565,13 @@
     renderHotkey();
     stopHotkeyCapture();
     await persistSettings();
-    setStatus(`Hotkey gesetzt: ${formatHotkeyForUi(currentHotkey)}`, "ok");
+    setStatus(t("statusHotkeySet", formatHotkeyForUi(currentHotkey)), "ok");
   }
 
   async function init() {
+    localizeStaticText();
+    updateCaptureButtonLabel();
+
     await loadSettings();
     await refreshStatus();
 

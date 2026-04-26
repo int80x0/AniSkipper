@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -8,48 +8,53 @@
   </head>
   <body>
     <main class="card">
-      <h1 class="title">AniSkipper</h1>
-      <p class="subtitle">Anime opening skipper</p>
-      <p id="status" class="status">Lade Status...</p>
+      <header class="brand">
+        <div class="brand-text">
+          <h1 class="title">AniSkipper</h1>
+          <p class="subtitle" data-i18n="popupSubtitle">Anime opening skipper</p>
+        </div>
+        <img class="brand-logo" src="../icons/icon-32.png" alt="AniSkipper logo" data-i18n-alt="popupLogoAlt" />
+      </header>
+      <p id="status" class="status" data-i18n="popupStatusLoading">Loading status...</p>
 
       <section class="section">
-        <h2 class="section-title">Skip</h2>
+        <h2 class="section-title" data-i18n="sectionSkip">Skip</h2>
         <label class="field">
-          <span class="label">Skip-Dauer (Sekunden)</span>
+          <span class="label" data-i18n="labelSkipSeconds">Skip duration (seconds)</span>
           <input id="skipSeconds" type="number" min="5" max="600" step="5" />
         </label>
         <label class="field">
-          <span class="label">Button-Position im Player</span>
+          <span class="label" data-i18n="labelButtonPosition">Button position in player</span>
           <select id="overlaySide">
-            <option value="left">Links</option>
-            <option value="right">Rechts</option>
+            <option value="left" data-i18n="overlayLeft">Left</option>
+            <option value="right" data-i18n="overlayRight">Right</option>
           </select>
         </label>
-        <button id="skipNow" class="primary" type="button">Jetzt skippen</button>
+        <button id="skipNow" class="primary" type="button" data-i18n="buttonSkipNow">Skip now</button>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Hotkey</h2>
+        <h2 class="section-title" data-i18n="sectionHotkey">Hotkey</h2>
         <div class="row">
           <input id="hotkeyDisplay" type="text" readonly />
-          <button id="captureHotkey" class="secondary" type="button">Ändern</button>
-          <button id="resetHotkey" class="secondary" type="button">Reset</button>
+          <button id="captureHotkey" class="secondary" type="button" data-i18n="buttonChange">Change</button>
+          <button id="resetHotkey" class="secondary" type="button" data-i18n="buttonReset">Reset</button>
         </div>
-        <p class="hint">Gilt im Tab (z. B. Alt+Shift+S).</p>
+        <p class="hint" data-i18n="hotkeyHint">Works in the tab (e.g. Alt+Shift+S).</p>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Erlaubte Seiten</h2>
+        <h2 class="section-title" data-i18n="sectionAllowedSites">Allowed sites</h2>
         <div class="row">
-          <input id="siteInput" type="text" placeholder="https://example.com oder example.com" />
-          <button id="addSiteManual" class="secondary" type="button">Hinzufügen</button>
+          <input id="siteInput" type="text" placeholder="https://example.com or example.com" data-i18n-placeholder="siteInputPlaceholder" />
+          <button id="addSiteManual" class="secondary" type="button" data-i18n="buttonAdd">Add</button>
         </div>
-        <button id="addCurrentSite" class="secondary wide" type="button">Aktuelle Seite hinzufügen</button>
+        <button id="addCurrentSite" class="secondary wide" type="button" data-i18n="buttonAddCurrentSite">Add current page</button>
         <ul id="siteList" class="site-list"></ul>
-        <p class="hint">https://xyz.de erlaubt auch https://xyz.de/blabla.</p>
+        <p class="hint" data-i18n="siteHintPathInheritance">https://xyz.com also allows https://xyz.com/anything.</p>
       </section>
 
-      <p class="credit">made with ♥️ by 80x0</p>
+      <p class="credit" data-i18n="creditText">made with ♥ by 80x0</p>
     </main>
 
     <script src="./popup.js"></script>

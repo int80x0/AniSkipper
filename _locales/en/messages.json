@@ -1,0 +1,161 @@
+{
+  "extName": {
+    "message": "AniSkipper"
+  },
+  "extDescription": {
+    "message": "Detects HTML5 players and skips anime openings in one click (+1:30)."
+  },
+  "actionTitle": {
+    "message": "AniSkipper"
+  },
+  "popupSubtitle": {
+    "message": "Anime opening skipper"
+  },
+  "popupLogoAlt": {
+    "message": "AniSkipper logo"
+  },
+  "popupStatusLoading": {
+    "message": "Loading status..."
+  },
+  "sectionSkip": {
+    "message": "Skip"
+  },
+  "labelSkipSeconds": {
+    "message": "Skip duration (seconds)"
+  },
+  "labelButtonPosition": {
+    "message": "Button position in player"
+  },
+  "overlayLeft": {
+    "message": "Left"
+  },
+  "overlayRight": {
+    "message": "Right"
+  },
+  "buttonSkipNow": {
+    "message": "Skip now"
+  },
+  "sectionHotkey": {
+    "message": "Hotkey"
+  },
+  "buttonChange": {
+    "message": "Change"
+  },
+  "buttonCapturePressKeys": {
+    "message": "Press keys..."
+  },
+  "buttonReset": {
+    "message": "Reset"
+  },
+  "hotkeyHint": {
+    "message": "Works in tab (for example Alt+Shift+S)."
+  },
+  "sectionAllowedSites": {
+    "message": "Allowed sites"
+  },
+  "siteInputPlaceholder": {
+    "message": "https://example.com or example.com"
+  },
+  "buttonAdd": {
+    "message": "Add"
+  },
+  "buttonAddCurrentSite": {
+    "message": "Add current page"
+  },
+  "siteHintPathInheritance": {
+    "message": "https://xyz.com also allows https://xyz.com/anything."
+  },
+  "creditText": {
+    "message": "made with ♥ by 80x0"
+  },
+  "sitesEmpty": {
+    "message": "No page enabled yet."
+  },
+  "buttonRemoveSite": {
+    "message": "Remove site"
+  },
+  "statusNoActiveTab": {
+    "message": "No active tab found"
+  },
+  "statusActivePageReadError": {
+    "message": "Could not read active page"
+  },
+  "statusPageNotEnabled": {
+    "message": "Page not enabled"
+  },
+  "statusReadFailed": {
+    "message": "Could not read status"
+  },
+  "statusPlayerDetected": {
+    "message": "Player detected"
+  },
+  "statusNoPlayerDetected": {
+    "message": "No video player on this page"
+  },
+  "statusJumped": {
+    "message": "Jumped: +$1s"
+  },
+  "statusSkipFailed": {
+    "message": "Skip failed"
+  },
+  "statusSiteAlreadyEnabled": {
+    "message": "Page is already enabled"
+  },
+  "statusSiteEnabled": {
+    "message": "Page enabled"
+  },
+  "statusInvalidUrl": {
+    "message": "Invalid URL"
+  },
+  "statusCurrentPageReadError": {
+    "message": "Could not read current page"
+  },
+  "statusCannotEnablePage": {
+    "message": "This page cannot be enabled"
+  },
+  "statusPressNewShortcut": {
+    "message": "Press the new key combination now"
+  },
+  "statusHotkeyCaptureCanceled": {
+    "message": "Hotkey capture canceled"
+  },
+  "statusHotkeyReset": {
+    "message": "Hotkey reset to default"
+  },
+  "statusHotkeyNeedModifier": {
+    "message": "Please use at least one modifier key"
+  },
+  "statusHotkeySet": {
+    "message": "Hotkey set: $1"
+  },
+  "noticeNoVideoPlayer": {
+    "message": "No video player found"
+  },
+  "noticeSkipNotPossible": {
+    "message": "Skip not possible"
+  },
+  "noticeOpeningSkipped": {
+    "message": "Opening skipped (+$1)"
+  },
+  "labelHotkey": {
+    "message": "Hotkey"
+  },
+  "errorSiteNotEnabled": {
+    "message": "Page not enabled"
+  },
+  "errorNoMatchingPlayer": {
+    "message": "No matching video player found"
+  },
+  "errorFrameCommunicationFailed": {
+    "message": "Frame communication failed"
+  },
+  "errorNoContentScripts": {
+    "message": "This page does not allow content scripts"
+  },
+  "errorPageNotAllowedAddFirst": {
+    "message": "Page not allowed. Add the page in AniSkipper first."
+  },
+  "errorNoActiveTab": {
+    "message": "No active tab found"
+  }
+}

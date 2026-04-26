@@ -1,28 +1,33 @@
 # AniSkipper
 
-Leichtes Browser-Addon zum schnellen Überspringen von Anime-Openings.
+Lightweight browser extension to skip anime openings in one click.
 
 ## Showcase
 ![AniSkipper Popup Showcase](assets/showcase-popup.png)
 
 ## Features
-- Skip-Button direkt im Player
-- Frei einstellbare Skip-Dauer
-- Hotkey im Popup konfigurierbar
-- Seiten-Whitelist (manuell oder aktuelle Seite übernehmen)
-- Läuft in Firefox sowie Chrome-/Opera-basierten Browsern
+- Floating skip button directly inside the video player
+- Custom skip duration
+- Configurable hotkey
+- Allowed-site list (manual entry or add current page)
+- Player button position switch (left/right)
+- Automatic UI language:
+  - German browser -> German UI
+  - English browser or any other language -> English UI
+- Supports Firefox and Chromium-based browsers (Chrome, Opera, etc.)
 
-## Installation
+## Install
 ### Firefox
-1. `about:debugging#/runtime/this-firefox` öffnen
-2. `Temporäres Add-on laden` klicken
-3. `AniSkipper/manifest.json` auswählen
+1. Open `about:debugging#/runtime/this-firefox`
+2. Click `Load Temporary Add-on`
+3. Select `AniSkipper/manifest.json`
 
 ### Chrome / Opera
-1. `dist/AniSkipper-chrome-<version>.zip` entpacken
-2. `chrome://extensions` oder `opera://extensions` öffnen
-3. Developer Mode aktivieren
-4. `Entpackte Erweiterung laden` und den entpackten Ordner wählen
+1. Build or use `dist/AniSkipper-chrome-<version>.zip`
+2. Unpack the zip
+3. Open `chrome://extensions` or `opera://extensions`
+4. Enable Developer Mode
+5. Click `Load unpacked` and select the unpacked folder
 
 ## Build
 ```powershell
@@ -30,7 +35,7 @@ Leichtes Browser-Addon zum schnellen Überspringen von Anime-Openings.
 .\AniSkipper\build-chrome.ps1
 ```
 
-## Nutzung
-1. Seite im Popup freischalten
-2. Skip-Dauer, Hotkey und Button-Position einstellen
-3. Im Player per Button oder Hotkey skippen
+## Usage
+1. Open the popup and allow your current page
+2. Set skip seconds, hotkey, and button side
+3. Skip with the player button or your hotkey

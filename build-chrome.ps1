@@ -69,6 +69,7 @@ $chromeManifest = [ordered]@{
   name = $firefoxManifest.name
   version = $version
   description = $firefoxManifest.description
+  default_locale = $firefoxManifest.default_locale
   icons = $firefoxManifest.icons
   permissions = @($permissionSet)
   host_permissions = @($hostPermissionSet)
@@ -95,6 +96,7 @@ try {
     "background",
     "content",
     "icons",
+    "_locales",
     "popup"
   )
 

@@ -31,6 +31,7 @@ try {
     "background",
     "content",
     "icons",
+    "_locales",
     "popup"
   )
 

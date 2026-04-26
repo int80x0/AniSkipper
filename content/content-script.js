@@ -32,6 +32,12 @@
   const trackedVideos = new WeakSet();
   const control = buildControl();
 
+  function t(key, substitutions) {
+    const message =
+      typeof api.i18n?.getMessage === "function" ? api.i18n.getMessage(key, substitutions) : "";
+    return message || key;
+  }
+
   function clampSkipSeconds(value) {
     const parsed = Number(value);
     if (!Number.isFinite(parsed)) {
@@ -386,18 +392,18 @@
 
     const video = pickPrimaryVideo();
     if (!video) {
-      showNotice("Kein Video-Player gefunden");
+      showNotice(t("noticeNoVideoPlayer"));
       return false;
     }
 
     const secondsToSkip = clampSkipSeconds(customSeconds ?? skipSeconds);
     const didSkip = skipVideo(video, secondsToSkip);
     if (!didSkip) {
-      showNotice("Skip nicht möglich");
+      showNotice(t("noticeSkipNotPossible"));
       return false;
     }
 
-    showNotice(`Opening geskippt (+${formatMmSs(secondsToSkip)})`);
+    showNotice(t("noticeOpeningSkipped", formatMmSs(secondsToSkip)));
     handleVideoActivity(video, 2100);
     return true;
   }
@@ -456,7 +462,7 @@
     });
 
     const hint = document.createElement("div");
-    hint.textContent = "Hotkey";
+    hint.textContent = t("labelHotkey");
     hint.style.cssText = [
       "display:flex",
       "align-items:center",
@@ -727,7 +733,7 @@
           if (typeof sendResponse === "function") {
             sendResponse({
               ok: false,
-              error: "Seite nicht freigeschaltet"
+              error: t("errorSiteNotEnabled")
             });
           }
           return;
@@ -737,7 +743,7 @@
         if (typeof sendResponse === "function") {
           sendResponse({
             ok: didSkip,
-            error: didSkip ? undefined : "Kein passender Video-Player gefunden"
+            error: didSkip ? undefined : t("errorNoMatchingPlayer")
           });
         }
       })();

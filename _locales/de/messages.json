@@ -1,0 +1,161 @@
+{
+  "extName": {
+    "message": "AniSkipper"
+  },
+  "extDescription": {
+    "message": "Erkennt HTML5-Player und überspringt Anime-Openings mit einem Klick (+1:30)."
+  },
+  "actionTitle": {
+    "message": "AniSkipper"
+  },
+  "popupSubtitle": {
+    "message": "Anime-Opening-Skipper"
+  },
+  "popupLogoAlt": {
+    "message": "AniSkipper-Logo"
+  },
+  "popupStatusLoading": {
+    "message": "Status wird geladen..."
+  },
+  "sectionSkip": {
+    "message": "Skip"
+  },
+  "labelSkipSeconds": {
+    "message": "Skip-Dauer (Sekunden)"
+  },
+  "labelButtonPosition": {
+    "message": "Button-Position im Player"
+  },
+  "overlayLeft": {
+    "message": "Links"
+  },
+  "overlayRight": {
+    "message": "Rechts"
+  },
+  "buttonSkipNow": {
+    "message": "Jetzt skippen"
+  },
+  "sectionHotkey": {
+    "message": "Hotkey"
+  },
+  "buttonChange": {
+    "message": "Ändern"
+  },
+  "buttonCapturePressKeys": {
+    "message": "Tasten drücken..."
+  },
+  "buttonReset": {
+    "message": "Reset"
+  },
+  "hotkeyHint": {
+    "message": "Gilt im Tab (z. B. Alt+Shift+S)."
+  },
+  "sectionAllowedSites": {
+    "message": "Erlaubte Seiten"
+  },
+  "siteInputPlaceholder": {
+    "message": "https://example.com oder example.com"
+  },
+  "buttonAdd": {
+    "message": "Hinzufügen"
+  },
+  "buttonAddCurrentSite": {
+    "message": "Aktuelle Seite hinzufügen"
+  },
+  "siteHintPathInheritance": {
+    "message": "https://xyz.de erlaubt auch https://xyz.de/blabla."
+  },
+  "creditText": {
+    "message": "made with ♥ by 80x0"
+  },
+  "sitesEmpty": {
+    "message": "Noch keine Seite freigeschaltet."
+  },
+  "buttonRemoveSite": {
+    "message": "Seite entfernen"
+  },
+  "statusNoActiveTab": {
+    "message": "Kein aktiver Tab gefunden"
+  },
+  "statusActivePageReadError": {
+    "message": "Aktive Seite konnte nicht gelesen werden"
+  },
+  "statusPageNotEnabled": {
+    "message": "Seite nicht freigeschaltet"
+  },
+  "statusReadFailed": {
+    "message": "Status konnte nicht gelesen werden"
+  },
+  "statusPlayerDetected": {
+    "message": "Player erkannt"
+  },
+  "statusNoPlayerDetected": {
+    "message": "Kein Video-Player auf dieser Seite"
+  },
+  "statusJumped": {
+    "message": "Gesprungen: +$1s"
+  },
+  "statusSkipFailed": {
+    "message": "Skip fehlgeschlagen"
+  },
+  "statusSiteAlreadyEnabled": {
+    "message": "Seite ist bereits freigeschaltet"
+  },
+  "statusSiteEnabled": {
+    "message": "Seite freigeschaltet"
+  },
+  "statusInvalidUrl": {
+    "message": "Ungültige URL"
+  },
+  "statusCurrentPageReadError": {
+    "message": "Aktuelle Seite konnte nicht gelesen werden"
+  },
+  "statusCannotEnablePage": {
+    "message": "Diese Seite kann nicht freigeschaltet werden"
+  },
+  "statusPressNewShortcut": {
+    "message": "Jetzt neue Tastenkombination drücken"
+  },
+  "statusHotkeyCaptureCanceled": {
+    "message": "Hotkey-Aufnahme abgebrochen"
+  },
+  "statusHotkeyReset": {
+    "message": "Hotkey auf Standard gesetzt"
+  },
+  "statusHotkeyNeedModifier": {
+    "message": "Bitte mit mindestens einer Modifier-Taste"
+  },
+  "statusHotkeySet": {
+    "message": "Hotkey gesetzt: $1"
+  },
+  "noticeNoVideoPlayer": {
+    "message": "Kein Video-Player gefunden"
+  },
+  "noticeSkipNotPossible": {
+    "message": "Skip nicht möglich"
+  },
+  "noticeOpeningSkipped": {
+    "message": "Opening geskippt (+$1)"
+  },
+  "labelHotkey": {
+    "message": "Hotkey"
+  },
+  "errorSiteNotEnabled": {
+    "message": "Seite nicht freigeschaltet"
+  },
+  "errorNoMatchingPlayer": {
+    "message": "Kein passender Video-Player gefunden"
+  },
+  "errorFrameCommunicationFailed": {
+    "message": "Frame-Kommunikation fehlgeschlagen"
+  },
+  "errorNoContentScripts": {
+    "message": "Seite unterstützt keine Content-Skripte"
+  },
+  "errorPageNotAllowedAddFirst": {
+    "message": "Seite nicht erlaubt. Füge die Seite zuerst in AniSkipper hinzu."
+  },
+  "errorNoActiveTab": {
+    "message": "Kein aktiver Tab gefunden"
+  }
+}
