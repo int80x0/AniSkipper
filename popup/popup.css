@@ -59,6 +59,22 @@ body {
   flex: 0 0 auto;
 }
 
+.brand-logo-link {
+  display: inline-flex;
+  border-radius: 8px;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.brand-logo-link:hover .brand-logo {
+  filter: brightness(1.08);
+}
+
+.brand-logo-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 28%, transparent);
+}
+
 .title {
   margin: 0;
   font-size: 17px;
