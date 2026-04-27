@@ -17,17 +17,27 @@ Lightweight browser extension to skip anime openings in one click.
 - Supports Firefox and Chromium-based browsers (Chrome, Opera, etc.)
 
 ## Install
-### Firefox
+### From GitHub Releases (recommended)
+#### Firefox
+1. Open this file in Firefox: [AniSkipper Firefox (latest)](https://github.com/int80x0/AniSkipper/releases/download/aniskipper-latest/AniSkipper-firefox-latest.xpi)
+2. Confirm the install prompt.
+3. If Firefox refuses the file as unsigned/corrupt, use the temporary install method below.
+
+#### Chrome / Opera / Edge
+1. Download: [AniSkipper Chromium (latest)](https://github.com/int80x0/AniSkipper/releases/download/aniskipper-latest/AniSkipper-chrome-latest.zip)
+2. Open your extension page:
+   - Chrome: `chrome://extensions`
+   - Opera: `opera://extensions`
+   - Edge: `edge://extensions`
+3. Enable Developer Mode.
+4. Drag and drop the ZIP into the extension page.
+5. If drag and drop is blocked, unzip and use `Load unpacked`.
+
+### Temporary local install (dev)
+#### Firefox
 1. Open `about:debugging#/runtime/this-firefox`
 2. Click `Load Temporary Add-on`
 3. Select `AniSkipper/manifest.json`
-
-### Chrome / Opera
-1. Build or use `dist/AniSkipper-chrome-<version>.zip`
-2. Unpack the zip
-3. Open `chrome://extensions` or `opera://extensions`
-4. Enable Developer Mode
-5. Click `Load unpacked` and select the unpacked folder
 
 ## Build
 ```powershell
