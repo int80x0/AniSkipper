@@ -65,8 +65,11 @@
   "siteHintPathInheritance": {
     "message": "https://xyz.com also allows https://xyz.com/anything."
   },
-  "creditPrefix": {
-    "message": "made with ♥ by"
+  "creditPrefixStart": {
+    "message": "made with"
+  },
+  "creditPrefixEnd": {
+    "message": "by"
   },
   "creditAuthorName": {
     "message": "80x0"

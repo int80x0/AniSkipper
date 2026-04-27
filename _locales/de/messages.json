@@ -65,8 +65,11 @@
   "siteHintPathInheritance": {
     "message": "https://xyz.de erlaubt auch https://xyz.de/blabla."
   },
-  "creditPrefix": {
-    "message": "mit ♥ von"
+  "creditPrefixStart": {
+    "message": "made with"
+  },
+  "creditPrefixEnd": {
+    "message": "by"
   },
   "creditAuthorName": {
     "message": "80x0"
