@@ -20,6 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lint extension manifest and package
+        shell: pwsh
+        run: |
+          npx --yes web-ext lint --source-dir . --warnings-as-errors
+
       - name: Read version
         id: version
         shell: pwsh
@@ -36,6 +46,17 @@ jobs:
         shell: pwsh
         run: |
           ./build-chrome.ps1 -OutputDir ".\dist"
+
+      - name: Upload tag artifacts
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: AniSkipper-${{ github.ref_name }}-artifacts
+          path: |
+            dist/AniSkipper-firefox-${{ steps.version.outputs.value }}.xpi
+            dist/AniSkipper-chrome-${{ steps.version.outputs.value }}.zip
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Prepare latest artifact names
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
