@@ -35,6 +35,10 @@ Lightweight browser extension to skip anime openings in one click.
 .\AniSkipper\build-chrome.ps1
 ```
 
+Build outputs:
+- `dist/AniSkipper-firefox-<version>.xpi`
+- `dist/AniSkipper-chrome-<version>.zip`
+
 ## Usage
 1. Open the popup and allow your current page
 2. Set skip seconds, hotkey, and button side

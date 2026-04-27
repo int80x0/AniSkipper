@@ -43,8 +43,8 @@ try {
     Copy-Item -LiteralPath $source -Destination (Join-Path $tempRoot $entry) -Recurse -Force
   }
 
-  $destinationXpi = Join-Path $resolvedOutputDir ("AniSkipper-" + $version + ".xpi")
-  $destinationZip = Join-Path $resolvedOutputDir ("AniSkipper-" + $version + ".zip")
+  $destinationXpi = Join-Path $resolvedOutputDir ("AniSkipper-firefox-" + $version + ".xpi")
+  $destinationZip = Join-Path $resolvedOutputDir ("AniSkipper-firefox-" + $version + ".zip")
 
   if (Test-Path -LiteralPath $destinationXpi) {
     Remove-Item -LiteralPath $destinationXpi -Force
@@ -55,7 +55,7 @@ try {
 
   Compress-Archive -Path (Join-Path $tempRoot "*") -DestinationPath $destinationZip -CompressionLevel Optimal
   Move-Item -LiteralPath $destinationZip -Destination $destinationXpi -Force
-  Write-Output ("XPI erstellt: " + $destinationXpi)
+  Write-Output ("Firefox XPI erstellt: " + $destinationXpi)
 }
 finally {
   if (Test-Path -LiteralPath $tempRoot) {

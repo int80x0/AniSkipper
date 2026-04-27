@@ -41,7 +41,7 @@ jobs:
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         shell: pwsh
         run: |
-          Copy-Item -LiteralPath "dist/AniSkipper-${{ steps.version.outputs.value }}.xpi" -Destination "dist/AniSkipper-latest.xpi" -Force
+          Copy-Item -LiteralPath "dist/AniSkipper-firefox-${{ steps.version.outputs.value }}.xpi" -Destination "dist/AniSkipper-firefox-latest.xpi" -Force
           Copy-Item -LiteralPath "dist/AniSkipper-chrome-${{ steps.version.outputs.value }}.zip" -Destination "dist/AniSkipper-chrome-latest.zip" -Force
 
       - name: Move latest tag to current commit
@@ -84,7 +84,7 @@ jobs:
           make_latest: false
           overwrite_files: true
           files: |
-            dist/AniSkipper-latest.xpi
+            dist/AniSkipper-firefox-latest.xpi
             dist/AniSkipper-chrome-latest.zip
 
       - name: Publish versioned release
@@ -96,5 +96,5 @@ jobs:
           prerelease: false
           overwrite_files: true
           files: |
-            dist/AniSkipper-${{ steps.version.outputs.value }}.xpi
+            dist/AniSkipper-firefox-${{ steps.version.outputs.value }}.xpi
             dist/AniSkipper-chrome-${{ steps.version.outputs.value }}.zip
