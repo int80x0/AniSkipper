@@ -3,7 +3,7 @@
 Lightweight browser extension to skip anime openings in one click.
 
 ## Showcase
-![AniSkipper Popup Showcase](assets/showcase-popup.png)
+![AniSkipper Popup Showcase](assets/showcase-popup.gif)
 
 ## Features
 - Floating skip button directly inside the video player
